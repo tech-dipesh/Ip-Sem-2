@@ -4,20 +4,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reviewText = void 0;
+console.log(process.env.GEMINI_API_KEY);
 const node_fetch_1 = __importDefault(require("node-fetch"));
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey)
+    throw new Error("api Key is not exist");
 const reviewText = async (text) => {
-    const response = await (0, node_fetch_1.default)('https://api.generative.googleapis.com/v1beta2/models/text-bison-001:generateMessage', {
+    const response = await (0, node_fetch_1.default)('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
+            'x-goog-api-key': apiKey,
         },
         body: JSON.stringify({
-            prompt: `You are an HR reviewer. Review this resume text, rate out of 100 as an ATS score, identify missing keywords, and suggest improvements:\n\n${text}`,
+            contents: [{
+                    parts: [{
+                            text: `Analyze this resume for ATS compatibility. Provide:\n
+          1. ATS score (0-100)\n
+          2. Missing keywords\n
+          3. Improvement suggestions\n\n
+          Resume: ${text}`
+                        }]
+                }]
         }),
     });
-    if (!response.ok)
-        throw new Error(`AI API error ${response.status}`);
-    return response.json();
+    const data = await response.json();
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Analysis failed';
 };
 exports.reviewText = reviewText;

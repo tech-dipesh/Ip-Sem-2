@@ -13,9 +13,8 @@ export const handleUpload = async (req: express.Request, res: express.Response):
   const buffer = file.data;
   try {
     const text = await parsePDF(buffer);
-    const review = await reviewText(text);
-    res.json(review);
   } catch (err) {
+    console.error('Upload processing error:', err);
     res.status(422).json({ error: (err as Error).message });
   }
 };
