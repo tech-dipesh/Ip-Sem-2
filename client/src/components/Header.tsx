@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/profile.jpg';
 
 const Header: React.FC = () => (
   <header style={{ backgroundColor: 'var(--primary-blue)', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

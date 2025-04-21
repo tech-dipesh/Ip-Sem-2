@@ -4,6 +4,8 @@ import fileUpload from 'express-fileupload';
 import { clerkMiddleware } from '@clerk/express';
 import authRoutes from './routes/authroutes';
 import uploadRoutes from "./routes/upload"
+import dotenv from "dotenv"
+dotenv.config(); 
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));
