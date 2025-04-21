@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Upload from './pages/Upload';
-import HowItWorks from './pages/HowItWorks';
+import HowItWorks from './pages/How';
 
 const App: React.FC = () => {
   return (

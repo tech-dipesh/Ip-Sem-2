@@ -1,7 +1,8 @@
 import React from 'react';
-import UploadArea from '../components/UploadArea';
-import Suggestions from '../components/Suggestions';
-import useUpload from '../hooks/useUpload';
+import UploadArea from '../components/Upload';
+import Suggestions from '../components/Suggestion';
+import useUpload from '../hooks/upload';
+import ProgressBar from '../components/Progress';
 
 const Upload: React.FC = () => {
   const {
