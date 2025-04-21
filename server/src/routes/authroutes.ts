@@ -1,10 +1,14 @@
 import { Router } from 'express';
-import { getProfile } from '../controllers/auth';
+import { authMiddleware, getProfileHandler } from '../controllers/auth';
 import { requireAuth } from '@clerk/express';
 
 const router = Router();
-router.get('/me', getProfile);
+
+//i'm using function directly
+router.get('/me', authMiddleware, getProfileHandler);
+
 router.post('/logout', requireAuth(), (_req, res) => {
   res.json({ success: true });
 });
+
 export default router;

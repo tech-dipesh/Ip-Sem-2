@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import { clerkMiddleware } from '@clerk/express';
-import authRoutes from './src/routes/authroutes';
-import uploadRoutes from "./src/routes/upload"
+import authRoutes from './routes/authroutes';
+import uploadRoutes from "./routes/upload"
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));

@@ -1,17 +1,33 @@
 import express from 'express';
 import { requireAuth } from '@clerk/express';
-import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
 
-type ClerkRequest = express.Request & ClerkExpressRequireAuth;
+//types mine
+type ClerkRequest = express.Request & {
+  auth: {
+    userId: string;
+    sessionClaims: {
+      email: string;
+      firstName: string;
+      lastName: string;
+    }
+  }
+};
 
-export const getProfile = [
-  requireAuth(),
-  (req: ClerkRequest, res: express.Response) => {
-    res.json({
-      userId: req.auth.userId,
-      email: req.auth.sessionClaims.email,
-      firstName: req.auth.sessionClaims.firstName,
-      lastName: req.auth.sessionClaims.lastName,
-    });
-  },
-];
+//expoerting a middleware and handler separeately
+export const authMiddleware = requireAuth();
+export const getProfileHandler = (req: express.Request, res: express.Response): void => {
+  const clerkReq = req as ClerkRequest;
+  
+  if (!clerkReq.auth) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return;
+  }
+  
+  res.json({
+    userId: clerkReq.auth.userId,
+    email: clerkReq.auth.sessionClaims.email,
+    firstName: clerkReq.auth.sessionClaims.firstName,
+    lastName: clerkReq.auth.sessionClaims.lastName,
+  });
+};
+export const getProfile = [authMiddleware, getProfileHandler];
