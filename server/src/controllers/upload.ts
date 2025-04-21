@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { parsePDF } from '../services/pdf';
+import { parsePDF } from '../services/pdf-parse';
 import { reviewText } from '../services/ai';
-
 export const handleUpload = async (req: Request, res: Response) => {
   const file = req.files?.file;
   if (!file || Array.isArray(file)) return res.status(400).json({ error: 'No file provided' });

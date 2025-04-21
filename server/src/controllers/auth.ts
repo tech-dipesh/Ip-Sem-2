@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { requireAuth, ClerkExpressRequireAuth } from '@clerk/express';
+import { requireAuth } from '@clerk/express';
 
-export const getProfile: ClerkExpressRequireAuth = [
+export const getProfile = [
   requireAuth(),
   (req: Request, res: Response) => {
     res.json({
