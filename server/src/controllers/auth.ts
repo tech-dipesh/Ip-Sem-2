@@ -1,9 +1,12 @@
-import { Request, Response } from 'express';
+import express from 'express';
 import { requireAuth } from '@clerk/express';
+import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
+
+type ClerkRequest = express.Request & ClerkExpressRequireAuth;
 
 export const getProfile = [
   requireAuth(),
-  (req: Request, res: Response) => {
+  (req: ClerkRequest, res: express.Response) => {
     res.json({
       userId: req.auth.userId,
       email: req.auth.sessionClaims.email,

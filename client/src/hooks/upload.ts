@@ -31,7 +31,7 @@ const useUpload = () => {
       const response = await axios.post('/api/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (event) => {
-          const percent = Math.round((event.loaded * 100) / event.total);
+          const percent = Math.round((event.loaded * 100));
           setProgress(percent);
         },
       });
