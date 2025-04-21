@@ -12,6 +12,7 @@ const Header: React.FC = () => (
       <Link to="/" style={{ margin: '0 1rem', color: '#fff' }}>Home</Link>
       <Link to="/upload" style={{ margin: '0 1rem', color: '#fff' }}>Upload</Link>
       <Link to="/how" style={{ margin: '0 1rem', color: '#fff' }}>How It Works</Link>
+      <Link to="/contact" style={{ margin: '0 1rem', color: '#fff' }}>Contact</Link>
     </nav>
     <div>
       <SignedOut>

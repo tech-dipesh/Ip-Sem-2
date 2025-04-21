@@ -25,7 +25,7 @@ const useUpload = () => {
     setError('');
 
     const formData = new FormData();
-    formData.append('resume', file);
+    formData.append('file', file);
 
     try {
       const response = await axios.post('/api/upload', formData, {

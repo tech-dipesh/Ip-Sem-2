@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Upload from './pages/Upload';
 import HowItWorks from './pages/How';
+import Contact from "./pages/Contact";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/how" element={<HowItWorks />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <Footer />

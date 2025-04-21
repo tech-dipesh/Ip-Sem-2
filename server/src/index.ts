@@ -8,10 +8,17 @@ import dotenv from "dotenv"
 dotenv.config(); 
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://localhost:5173',
+  credentials: true
+ }));
 app.use(express.json());
 app.use(fileUpload());
 app.use(clerkMiddleware());
+app.use(fileUpload({
+  limits: { fileSize: 3 * 1024 * 1024 }, 
+  // it wil set the limite of the 3 mb
+  abortOnLimit: true
+}));
 
 app.use('/api/auth', authRoutes);
 app.use('/api', uploadRoutes);
