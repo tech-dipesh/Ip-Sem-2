@@ -5,8 +5,13 @@ import { clerkMiddleware } from '@clerk/express';
 import authRoutes from './routes/authroutes';
 import uploadRoutes from "./routes/upload"
 import dotenv from "dotenv"
+import path from 'path';
 dotenv.config(); 
+  dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
+  // console.log("__dirname is", __dirname);
+// console.log("index clerk key is", !!process.env.CLERK_SECRET_KEY);
+// console.log("index gemini key is:", !!process.env.GEMINI_API_KEY);
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173',
   credentials: true
