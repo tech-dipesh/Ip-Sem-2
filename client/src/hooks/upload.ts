@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { uploadResume } from '../services/api';
 
 const useUpload = () => {
   const [progress, setProgress] = useState(0);
@@ -28,17 +28,29 @@ const useUpload = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('/api/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (event) => {
-          const percent = Math.round((event.loaded * 100));
-          setProgress(percent);
-        },
+      const response = await uploadResume(formData, (event) => {
+        const percent = Math.round((event.loaded * 100));
+        setProgress(percent);
       });
 
-      setSuggestions(response.data.suggestions);
-    } catch (err) {
-      setError('Upload failed. Please try again.');
+      if (response.data && response.data.suggestions) {
+        setSuggestions(response.data.suggestions);
+      } else {
+        setError('No suggestions returned. Please try again.');
+      }
+    } catch (err: any) {
+      console.error('Upload error:', err);
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        setError(`Server error: ${err.response.data.error || 'Unknown error'}`);
+      } else if (err.request) {
+        // The request was made but no response was received
+        setError('No response from server. Please check your connection.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setError(`Upload failed: ${err.message}`);
+      }
     } finally {
       setIsUploading(false);
     }
