@@ -12,11 +12,17 @@ app.use(cors({ origin: 'http://localhost:5173',
   credentials: true
  }));
 app.use(express.json());
-app.use(fileUpload());
 app.use(clerkMiddleware());
-app.use(fileUpload({
-  limits: { fileSize: 3 * 1024 * 1024 }, 
-  // it wil set the limite of the 3 mb
+// app.use(fileUpload());
+// app.use(fileUpload({
+//   limits: { fileSize: 3 * 1024 * 1024 }, 
+//   // it wil set the limite of the 3 mb
+//   abortOnLimit: true
+// }));
+// server/src/index.ts
+// Remove duplicate fileUpload middleware and configure once:
+app.use(fileUpload ({
+  limits: { fileSize: 3 * 1024 * 1024 },
   abortOnLimit: true
 }));
 

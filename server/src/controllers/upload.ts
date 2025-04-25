@@ -2,36 +2,37 @@ import express from 'express';
 import { UploadedFile } from 'express-fileupload';
 import { parsePDF } from '../services/pdf-parse';
 import { reviewText } from '../services/ai';
+// server/src/controllers/upload.ts
 export const handleUpload = async (req: express.Request, res: express.Response): Promise<void> => {
-  const file = req.files?.file as UploadedFile | undefined;
-  if (!file || Array.isArray(file)) {
-    res.status(400).json({ error: 'No file provided' });
-    return;
-  }
-  
-  const buffer = file.data;
   try {
-    // 1. Parse the PDF to extract text
+    const file = req.files?.file as UploadedFile | undefined;
+    
+    if (!file || Array.isArray(file)) {
+      res.status(400).json({ error: 'No file provided' });
+      return;
+    }
+
+    // Add file validation
+    if (file.mimetype !== 'application/pdf') {
+      res.status(400).json({ error: 'Only PDF files are allowed' });
+      return;
+    }
+
+    const buffer = file.data;
     const text = await parsePDF(buffer);
-    
-    // 2. Send the text to the AI service for analysis
     const aiResponse = await reviewText(text);
-    
-    // 3. Format the response
-    // Parse AI response to extract suggestions
     const suggestions = extractSuggestionsFromAIResponse(aiResponse);
-    
-    // 4. Send successful response with suggestions
-    res.status(200).json({ 
-      success: true,
-      suggestions 
-    });
+
+    res.status(200).json({ suggestions });
   } catch (err) {
-    console.error('Upload processing error:', err);
-    res.status(422).json({ error: (err as Error).message });
+    console.error('Upload error:', err);
+    const error = err as Error;
+    res.status(500).json({ 
+      error: error.message || 'Internal server error',
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 };
-
 // Helper function to parse AI response
 function extractSuggestionsFromAIResponse(aiResponse: string): string[] {
   // Simple parsing approach - split by line breaks and filter out empty lines
