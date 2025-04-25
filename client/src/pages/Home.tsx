@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button, Typography, Box, styled } from "@mui/material";
-import Grid from "@mui/material/Grid"
+import Grid from '@mui/material/Grid';
 import {
   RocketLaunch,
   CloudUpload,
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 
   return (
     <HeroSection>
-      {/* Animated Background Particles */}
+      {/* this is animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.1 }}
@@ -58,13 +58,14 @@ const Home: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: 'url("data:image/svg+xml,...")', // Add your particle SVG
+          backgroundImage: 'url("data:image/svg+xml,...")',
+          //for adding the background of anyone
         }}
       />
 
       <Grid container spacing={6} justifyContent="center">
-        {/* Hero Text */}
-        <Grid item={true} xs={12} md={8}>
+        {/* this is the hero text */}
+        <Grid item xs={12} md={8}>
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -83,7 +84,7 @@ const Home: React.FC = () => {
           </motion.div>
         </Grid>
 
-        {/* Features Grid */}
+{/* this is the feature text */}
         <Grid item xs={12}>
           <Grid container spacing={4} justifyContent="center">
             {[
@@ -117,7 +118,7 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Grid item={true} xs={12} sx={{ textAlign: "center", mt: 8 }}>
+        <Grid xs={12} sx={{ textAlign: "center", mt: 8 }}>
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
