@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { uploadResume } from '../services/api';
+import { useAuth } from '@clerk/clerk-react';
 
 const useUpload = () => {
+  const {getToken}=useAuth();
   const [progress, setProgress] = useState(0);
   const [suggestions, setSuggestions] = useState<string[] | null>(null);
   const [error, setError] = useState('');
@@ -28,16 +30,27 @@ const useUpload = () => {
     formData.append('file', file);
 
     try {
-      const response = await uploadResume(formData, (event) => {
-        const percent = Math.round((event.loaded * 100));
-        setProgress(percent);
-      });
+      const token = await getToken();
+      const response = await uploadResume(
+        formData, 
+        (event) => {
+          const percent = Math.round((event.loaded * 100) / (event.total || 1));
+          setProgress(percent);
+        },
+        token // Pass the token here
+      );
 
-      if (response.data && response.data.suggestions) {
-        setSuggestions(response.data.suggestions);
-      } else {
-        setError('No suggestions returned. Please try again.');
-      }
+
+      // const response = await uploadResume(formData, (event) => {
+      //   const percent = Math.round((event.loaded * 100));
+      //   setProgress(percent);
+      // });
+
+      // if (response.data && response.data.suggestions) {
+      //   setSuggestions(response.data.suggestions);
+      // } else {
+      //   setError('No suggestions returned. Please try again.');
+      // }
     } catch (err: any) {
       console.error('Upload error:', err);
       if (err.response) {
