@@ -11,7 +11,7 @@ const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({ path: path_1.default.resolve(__dirname, '../../.env') });
 // console.log("__dirname is", __dirname);
 const node_fetch_1 = __importDefault(require("node-fetch"));
-const apiKey = process.env.GEMINI_API_KEY;
+const apiKey = "AAIzaSyA77IdQ0IOvUqhrzjgz3SrrpPQ1EkWfOSw";
 if (!apiKey)
     throw new Error("api Key is not exist");
 // server/src/services/ai.ts

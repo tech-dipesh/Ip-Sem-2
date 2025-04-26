@@ -8,7 +8,7 @@
   // console.log("__dirname is", __dirname);
 
   import fetch from 'node-fetch';
-  const apiKey=process.env.GEMINI_API_KEY;
+  const apiKey="AAIzaSyA77IdQ0IOvUqhrzjgz3SrrpPQ1EkWfOSw";
   if(!apiKey) throw new Error ("api Key is not exist")
   // server/src/services/ai.ts
   export const reviewText = async (text: string): Promise<string> => {
