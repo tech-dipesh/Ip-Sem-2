@@ -87,9 +87,9 @@ const Footer: React.FC = () => (
             Contact Us
           </Typography>
           <Typography variant="body2" paragraph>
-            📧 hello@collegecreations.com<br />
-            📱 +91-XXXXXXXXXX<br />
-            📍 Indian Institute of Technology, India
+            📧 dipeshgautambusiness@gmail.com<br />
+            📱 +91-9745400194 <br />
+            📍 Cu Students
           </Typography>
           <Box sx={{ mt: 2 }}>
             <SocialIcon whileHover={{ scale: 1.2 }} href="#">
