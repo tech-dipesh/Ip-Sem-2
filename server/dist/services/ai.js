@@ -102,6 +102,7 @@ const reviewText = async (text) => {
               💡 Top Improvement: [TOP_IMPROVEMENT]
               
               **Format Rules**
+              • You shouldn't make content on the bold as it shows like this: ** , which don't look good
               • Max 7 bullet points
               • 1 line per bullet
               • Use simple emojis
