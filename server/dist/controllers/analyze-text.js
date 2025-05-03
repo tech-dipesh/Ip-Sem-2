@@ -6,7 +6,14 @@ exports.handleTextAnalysis = void 0;
 const ai_1 = require("../services/ai");
 const handleTextAnalysis = async (req, res) => {
     try {
+        console.log('Received text analysis request');
         const { text } = req.body;
+        // Log the request structure (without the full text content)
+        console.log('Request body structure:', {
+            hasText: !!text,
+            textType: typeof text,
+            textLength: text ? text.length : 0
+        });
         // Enhanced validation
         if (typeof text !== 'string') {
             res.status(400).json({
@@ -22,19 +29,23 @@ const handleTextAnalysis = async (req, res) => {
             });
             return;
         }
+        console.log(`Processing resume text of length: ${text.length}`);
         const aiResponse = await (0, ai_1.reviewText)(text);
-        const suggestions = aiResponse.split('\n').filter(line => line.trim().length > 0);
+        console.log('AI response received successfully');
+        const suggestions = aiResponse.split('\n')
+            .filter(line => line.trim().length > 0)
+            .map(line => line.trim());
         res.status(200).json({ suggestions });
     }
     catch (err) {
         console.error('Text Analysis Error:', {
             error: err,
-            requestBody: req.body,
-            textLength: req.body.text?.length
+            message: err instanceof Error ? err.message : 'Unknown error',
+            stack: err instanceof Error ? err.stack : undefined
         });
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         res.status(500).json({
-            error: errorMessage,
+            error: `Resume analysis failed: ${errorMessage}`,
             ...(process.env.NODE_ENV === 'development' && { stack: err instanceof Error ? err.stack : undefined })
         });
     }

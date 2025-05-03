@@ -39,12 +39,21 @@
 // }
 
 // server/src/controllers/textAnalysis.ts
+// server/src/controllers/analyze-text.ts
 import express from 'express';
 import { reviewText } from '../services/ai';
 
 export const handleTextAnalysis = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
+    console.log('Received text analysis request');
     const { text } = req.body;
+
+    // Log the request structure (without the full text content)
+    console.log('Request body structure:', {
+      hasText: !!text,
+      textType: typeof text,
+      textLength: text ? text.length : 0
+    });
 
     // Enhanced validation
     if (typeof text !== 'string') {
@@ -63,20 +72,25 @@ export const handleTextAnalysis = async (req: express.Request, res: express.Resp
       return;
     }
 
+    console.log(`Processing resume text of length: ${text.length}`);
     const aiResponse = await reviewText(text);
-    const suggestions = aiResponse.split('\n').filter(line => line.trim().length > 0);
+    console.log('AI response received successfully');
+    
+    const suggestions = aiResponse.split('\n')
+      .filter(line => line.trim().length > 0)
+      .map(line => line.trim());
 
     res.status(200).json({ suggestions });
   } catch (err) {
     console.error('Text Analysis Error:', {
       error: err,
-      requestBody: req.body,
-      textLength: req.body.text?.length
+      message: err instanceof Error ? err.message : 'Unknown error',
+      stack: err instanceof Error ? err.stack : undefined
     });
     
     const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     res.status(500).json({ 
-      error: errorMessage,
+      error: `Resume analysis failed: ${errorMessage}`,
       ...(process.env.NODE_ENV === 'development' && { stack: err instanceof Error ? err.stack : undefined })
     });
   }

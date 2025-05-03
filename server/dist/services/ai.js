@@ -48,19 +48,18 @@ exports.reviewText = void 0;
 //   }
 // };
 // server/src/services/ai.ts
+// server/src/services/ai.ts
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 const node_fetch_1 = __importDefault(require("node-fetch"));
-// Load environment variables
 dotenv_1.default.config({ path: path_1.default.resolve(__dirname, '../../.env') });
-const apiKey = process.env.GEMINI_API_KEY;
+//  const apiKey = process.env.GEMINI_API_KEY;
+const apiKey = "AIzaSyDW2egOT7NHy7STB06iDFegX9IAnFulujs";
 const reviewText = async (text) => {
     try {
-        // Validate API key first
-        if (!apiKey || apiKey.length < 30) {
-            throw new Error('Invalid API key configuration');
-        }
-        const response = await (0, node_fetch_1.default)('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent', {
+        if (!apiKey)
+            throw new Error('Missing Gemini API key');
+        const response = await (0, node_fetch_1.default)(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,26 +67,55 @@ const reviewText = async (text) => {
             },
             body: JSON.stringify({
                 contents: [{
+                        role: "user",
                         parts: [{
-                                text: `Analyze this resume and provide specific suggestions in bullet points. Focus on:
-                1. ATS optimization score (0-100)
-                2. Missing hard/soft skills
-                3. Formatting issues
-                4. Keyword optimization
-                Resume: ${text.substring(0, 30000)}`
+                                // const analysisPrompt = (text: string) =>
+                                text: `🔍 **Resume Analysis Protocol** 🔍
+              **Step 1: Resume Validation**
+              ${'❗'.repeat(45)}
+              If the input is NOT a professional resume (contains code, random text, or invalid format), respond with:
+              "ERROR: 🚫 Please provide a proper resume document (PDF/text format). Detected input type: [DESCRIBE_INPUT_TYPE]"
+              
+              **Step 2: Professional Identification**
+              Analyze resume content to determine primary profession:
+              "👤 Professional Identity: [PROFESSION] (Confidence: X%)"
+              
+              **Step 3: Section-by-Section Analysis**
+              1️⃣ **Headline Review** 🎯
+              ${text.includes('Summary') ? '✅' : '❌'} [HEADLINE_FEEDBACK]
+              
+              2️⃣ **Education Check** 🎓
+              ${text.match(/Education|Academic/i) ? '✅' : '❌'} [EDUCATION_FEEDBACK]
+              
+              3️⃣ **Experience Audit** 💼
+              ${text.match(/Experience|Work History/i) ? '✅' : '❌'} [EXPERIENCE_FEEDBACK]
+              
+              4️⃣ **Skills Evaluation** 🛠️
+              ${text.match(/Skills|Technical/i) ? '✅' : '❌'} [SKILLS_FEEDBACK]
+              
+              **Step 4: Final Assessment** 📊
+              🏆 **Overall Score**: [SCORE]/100
+              🌟 [STRENGTH_1]
+              🌟 [STRENGTH_2]
+              🛑 [WEAKNESS_1]
+              🛑 [WEAKNESS_2]
+              💡 Top Improvement: [TOP_IMPROVEMENT]
+              
+              **Format Rules**
+              • Max 7 bullet points
+              • 1 line per bullet
+              • Use simple emojis
+              • Keep language conversational
+              
+              Resume Content:
+              ${text.substring(0, 30000)}`
                             }]
                     }]
             }),
         });
-        // Check response status before processing
         if (!response.ok) {
             const errorBody = await response.text();
-            console.error('Gemini API Error:', {
-                status: response.status,
-                statusText: response.statusText,
-                errorBody
-            });
-            throw new Error(`AI API error: ${response.statusText}`);
+            throw new Error(`Gemini API error: ${response.status} - ${errorBody}`);
         }
         const data = await response.json();
         return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No suggestions available';

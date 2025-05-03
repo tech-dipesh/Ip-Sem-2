@@ -1,4 +1,4 @@
-// import axios, { AxiosProgressEvent } from 'axios';
+import axios, { AxiosProgressEvent } from 'axios';
 
 // const API = axios.create({
 //   baseURL: 'http://localhost:3001',
@@ -19,26 +19,6 @@
 //   });
 // };
 // client/src/services/api.ts
-import axios, { AxiosProgressEvent } from 'axios';
-
-const API = axios.create({
-  baseURL: 'http://localhost:3001',
-});
-
-// Function for uploading PDF file
-export const uploadResume = (
-  formData: FormData,
-  onUploadProgress: (progressEvent: AxiosProgressEvent) => void,
-  token: string | null
-) => {
-  return API.post('/api/upload', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      ...(token && { Authorization: `Bearer ${token}` })
-    },
-    onUploadProgress
-  });
-};
 
 // Function for submitting resume text
 // export const analyzeResumeText = (text: string, token: string | null) => {
@@ -49,8 +29,22 @@ export const uploadResume = (
 //     }
 //   });
 // };
+const API = axios.create({
+  baseURL: 'http://localhost:3001',
+  timeout: 30000, // Increased timeout for AI processing
+});
+
+// Add request interceptor for error handling
+API.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error);
+    return Promise.reject(error);
+  }
+);
+
 export const analyzeResumeText = (text: string, token: string | null) => {
-  return API.post('/api/analyze-text', { text }, { // Note the { text } object
+  return API.post('/api/analyze-text', { text }, {
     headers: {
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` })

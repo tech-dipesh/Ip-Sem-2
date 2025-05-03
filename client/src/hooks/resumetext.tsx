@@ -1,6 +1,6 @@
-// import { useState } from 'react';
-// import { analyzeResumeText } from '../services/api';
-// import { useAuth } from '@clerk/clerk-react';
+import { useState } from 'react';
+import { analyzeResumeText } from '../services/api';
+import { useAuth } from '@clerk/clerk-react';
 
 // const useResumeText = () => {
 //   const { getToken } = useAuth();
@@ -52,11 +52,6 @@
 // };
 
 // export default useResumeText;
-
-import { useState } from 'react';
-import { analyzeResumeText } from '../services/api';
-import { useAuth } from '@clerk/clerk-react';
-
 const useResumeText = () => {
   const { getToken } = useAuth();
   const [suggestions, setSuggestions] = useState<string[] | null>(null);
@@ -84,19 +79,7 @@ const useResumeText = () => {
       }
     } catch (err: any) {
       console.error('Analysis Error:', err);
-      
-      let errorMessage = 'Analysis failed';
-      if (err.response) {
-        errorMessage = err.response.data?.error || 
-                      err.response.data?.message || 
-                      `Server error: ${err.response.status}`;
-      } else if (err.request) {
-        errorMessage = 'No response from server - check your connection';
-      } else if (err.message.includes('Network Error')) {
-        errorMessage = 'Network error - please check internet connection';
-      }
-
-      setError(errorMessage);
+      setError(err.response?.data?.error || 'Analysis failed. Please try again.');
     } finally {
       setIsProcessing(false);
     }
@@ -104,5 +87,4 @@ const useResumeText = () => {
 
   return { handleTextSubmit, suggestions, error, isProcessing };
 };
-
 export default useResumeText;
