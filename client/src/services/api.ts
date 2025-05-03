@@ -41,8 +41,16 @@ export const uploadResume = (
 };
 
 // Function for submitting resume text
+// export const analyzeResumeText = (text: string, token: string | null) => {
+//   return API.post('/api/analyze-text', { text }, {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       ...(token && { Authorization: `Bearer ${token}` })
+//     }
+//   });
+// };
 export const analyzeResumeText = (text: string, token: string | null) => {
-  return API.post('/api/analyze-text', { text }, {
+  return API.post('/api/analyze-text', { text }, { // Note the { text } object
     headers: {
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` })
