@@ -80,7 +80,7 @@ const Footer: React.FC = () => (
         </AnimatedSection>
       </Grid>
 
-      {/* Contact Info */}
+
       <Grid item xs={6} md={3}>
         <AnimatedSection variants={footerVariants} initial="hidden" animate="visible">
           <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>

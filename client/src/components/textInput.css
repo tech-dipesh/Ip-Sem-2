@@ -1,0 +1,54 @@
+.resume-text-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.resume-text-field {
+  margin: 1.5rem 0;
+}
+
+.resume-text-field textarea {
+  font-family: 'Roboto Mono', monospace;
+  line-height: 1.6;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  min-width: 180px;
+  height: 48px;
+  font-weight: 600;
+  text-transform: none;
+  position: relative;
+}
+
+.button-progress {
+  margin-right: 10px;
+}
+
+.error-message {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .resume-text-container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .resume-text-field {
+    margin: 1rem 0;
+  }
+  
+  .submit-button {
+    min-width: 160px;
+  }
+}
