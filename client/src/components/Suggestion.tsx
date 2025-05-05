@@ -3,7 +3,7 @@ import React from 'react';
 interface SuggestionsProps {
   data: string[];
 }
-
+// Show all of the suggestions, it is not implement at the moment
 const Suggestions: React.FC<SuggestionsProps> = ({ data }) => {
   return (
     <div className="suggestions">

@@ -10,7 +10,7 @@ import {
   Analytics,
 } from "@mui/icons-material";
 import CountUp from "react-countup";
-
+// I can convert this into the tailwind in future
 const HeroSection = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
   background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
@@ -29,6 +29,7 @@ const FloatingCard = styled(motion.div)({
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
 });
 
+// Too much stylying of raw animation need to convert on the tailwind, i will nnot use the bootstrap.
 const GradientButton = styled(Button)({
   background: "linear-gradient(45deg, #00C9FF 0%, #92FE9D 100%)",
   color: "black",
@@ -47,7 +48,6 @@ const Home: React.FC = () => {
 
   return (
     <HeroSection>
-      {/* this is animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.1 }}
@@ -59,12 +59,12 @@ const Home: React.FC = () => {
           right: 0,
           bottom: 0,
           backgroundImage: 'url("data:image/svg+xml,...")',
-          //for adding the background of anyone
+          // My homepage animation, i think quite clutter the framer animation
         }}
       />
 
-      <Grid container spacing={6} justifyContent="center">
-        {/* this is the hero text */}
+           <Grid container spacing={6} justifyContent="center">
+            {/* Not necessery content but i can change this content later. */}
         <Grid item xs={12} md={8}>
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -72,6 +72,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <Typography variant="h2" gutterBottom sx={{ fontWeight: 700 }}>
+
               Transform Your Career with
               <motion.span
                 style={{ color: "#00C9FF", marginLeft: "1rem" }}
@@ -91,11 +92,11 @@ const Home: React.FC = () => {
               {
                 icon: <RocketLaunch />,
                 title: "Instant Analysis",
-                count: 1500,
+                count: 17,
               },
-              { icon: <CloudUpload />, title: "Resume Uploads", count: 2300 },
-              { icon: <Analytics />, title: "Career Insights", count: 95 },
-              { icon: <ContactSupport />, title: "24/7 Support", count: 100 },
+              { icon: <CloudUpload />, title: "Resume Uploads", count: 45 },
+              { icon: <Analytics />, title: "Career Insights", count: 27 },
+              { icon: <ContactSupport />, title: "24/7 Support", count: 37 },
             ].map((item, index) => (
               <Grid item xs={12} sm={6} md={3} key={item.title}>
                 <motion.div

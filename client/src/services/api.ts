@@ -1,4 +1,5 @@
-import axios, { AxiosProgressEvent } from 'axios';
+// import axios, { AxiosProgressEvent } from 'axios';
+import axios from 'axios';
 
 // const API = axios.create({
 //   baseURL: 'http://localhost:3001',
@@ -31,10 +32,11 @@ import axios, { AxiosProgressEvent } from 'axios';
 // };
 const API = axios.create({
   baseURL: 'http://localhost:3001',
-  timeout: 30000, // Increased timeout for AI processing
+  timeout: 30000,
+  // higher timer would be beter for me learning
 });
 
-// Add request interceptor for error handling
+// Api error handling with the promise calling for me.
 API.interceptors.response.use(
   response => response,
   error => {
@@ -43,6 +45,7 @@ API.interceptors.response.use(
   }
 );
 
+// Url from the backend
 export const analyzeResumeText = (text: string, token: string | null) => {
   return API.post('/api/analyze-text', { text }, {
     headers: {

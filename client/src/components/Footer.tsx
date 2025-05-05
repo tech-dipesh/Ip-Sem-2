@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { LinkedIn, Instagram, Facebook, Code, Favorite } from '@mui/icons-material';
 import { SiTypescript, SiReact, SiExpress } from 'react-icons/si';
 
+// Stylying the footer dipesh
 const StyledFooter = styled('footer')(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
@@ -13,6 +14,7 @@ const StyledFooter = styled('footer')(({ theme }) => ({
   overflow: 'hidden',
 }));
 
+// making a footer animated
 const AnimatedSection = motion(Box);
 
 const footerVariants = {
@@ -20,6 +22,7 @@ const footerVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+// adding my all of the icons
 const SocialIcon = motion(styled(Link)(({ theme }) => ({
   color: 'inherit',
   margin: theme.spacing(0, 1),
@@ -56,6 +59,7 @@ const Footer: React.FC = () => (
           <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
             Quick Links
           </Typography>
+          {/* All of the footers list */}
           <Box component="ul" sx={{ listStyle: 'none', pl: 0 }}>
             {[
               { text: 'Home', href: '/' },
@@ -91,6 +95,7 @@ const Footer: React.FC = () => (
             📱 +91-9745400194 <br />
             📍 Cu Students
           </Typography>
+          {/* framer aniimation */}
           <Box sx={{ mt: 2 }}>
             <SocialIcon whileHover={{ scale: 1.2 }} href="#">
               <Instagram fontSize="large" />
@@ -105,7 +110,7 @@ const Footer: React.FC = () => (
         </AnimatedSection>
       </Grid>
 
-      {/* Tech Stack */}
+{/* all of my tech stacks */}
       <Grid item xs={12} md={3}>
         <AnimatedSection variants={footerVariants} initial="hidden" animate="visible">
           <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
@@ -121,7 +126,7 @@ const Footer: React.FC = () => (
       </Grid>
     </Grid>
 
-    {/* Bottom Legal Section */}
+{/* My legality info */}
     <Box sx={{ 
       mt: 4, 
       pt: 4, 

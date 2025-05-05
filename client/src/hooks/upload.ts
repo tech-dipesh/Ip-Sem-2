@@ -75,8 +75,10 @@
 // export default useUpload;
 
 // client/src/hooks/upload.ts
+
+// Don't need this page at the mooment on the webpage
 import { useState } from 'react';
-import { uploadResume } from '../services/api';
+import { analyzeResumeText } from '../services/api';
 import { useAuth } from '@clerk/clerk-react';
 
 const useUpload = () => {
@@ -109,8 +111,8 @@ const useUpload = () => {
 
     try {
       const token = await getToken();
-      const response = await uploadResume(
-        formData, 
+      const response = await analyzeResumeText(
+        formData,
         (event) => {
           const percent = Math.round((event.loaded * 100) / (event.total || 1));
           setProgress(percent);

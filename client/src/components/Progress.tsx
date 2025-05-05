@@ -1,5 +1,5 @@
 import React from 'react';
-
+// This is when i upload the file and while progressing, it is not implementing at the moment on my website
 interface ProgressBarProps {
   progress: number;
 }

@@ -14,8 +14,8 @@ const SectionWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const AnimatedText = motion(Typography);
-
+// const AnimatedText = motion(Typography);
+// Add on the array all of the problem statement
 const storyContent = [
   {
     icon: <School fontSize="large" />,
@@ -101,7 +101,7 @@ const HowItWorks = () => {
         ))}
       </Grid>
 
-      {/* Mission Statement */}
+{/* what's the mission comp,s. */}
       <Box sx={{ mt: 12, textAlign: 'center' }}>
         <motion.div
           style={{ scale, opacity }}
@@ -128,7 +128,7 @@ const HowItWorks = () => {
         </motion.div>
       </Box>
 
-      {/* Stats Section */}
+{/* alll stats with the animation */}
       <Grid container spacing={4} sx={{ mt: 8 }}>
         {[
           { number: 'Better', label: 'Resumes Improved' },

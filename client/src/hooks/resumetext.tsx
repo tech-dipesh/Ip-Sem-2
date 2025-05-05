@@ -52,6 +52,7 @@ import { useAuth } from '@clerk/clerk-react';
 // };
 
 // export default useResumeText;
+// No addding on the website at the moment
 const useResumeText = () => {
   const { getToken } = useAuth();
   const [suggestions, setSuggestions] = useState<string[] | null>(null);

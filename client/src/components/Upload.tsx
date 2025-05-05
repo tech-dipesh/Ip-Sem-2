@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FiUploadCloud, FiLoader } from 'react-icons/fi';
 import './Upload.css';
-
+// It is not funcinal at the moment
 interface UploadAreaProps {
   onDrop: (files: FileList) => void;
   isUploading: boolean;

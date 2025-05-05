@@ -4,8 +4,10 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 import logo from '../assets/profile.jpg';
 
 const Header: React.FC = () => (
+  // Header animation
   <header style={{ backgroundColor: 'var(--primary-blue)', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <Link to="/">
+    
       <img src={logo} alt="Logo" style={{ height: '40px' }} />
     </Link>
     <nav>

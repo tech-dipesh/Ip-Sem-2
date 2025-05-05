@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Box, TextField, Typography, Paper, CircularProgress } from '@mui/material';
 import './textInput.css';
+// I added the textt input instead of resume file due to difficulty of doing solely
 
 interface ResumeTextInputProps {
   onSubmit: (text: string) => Promise<void>;
@@ -14,12 +15,12 @@ const ResumeTextInput: React.FC<ResumeTextInputProps> = ({ onSubmit, isProcessin
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
+    // You should have at least 50 chars length .
     if (resumeText.trim().length < 50) {
       setError('Please enter a more detailed resume text (minimum 50 characters).');
       return;
     }
-    
+    // When i face the api error
     setError('');
     try {
       await onSubmit(resumeText);
