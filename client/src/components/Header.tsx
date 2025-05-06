@@ -5,17 +5,36 @@ import logo from '../assets/profile.jpg';
 
 const Header: React.FC = () => (
   // Header animation
-  <header style={{ backgroundColor: 'var(--primary-blue)', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-    <Link to="/">
-    
-      <img src={logo} alt="Logo" style={{ height: '40px' }} />
+<header className="bg-primary-blue p-4 flex justify-between bg-blue-200 items-center">
+  <Link to="/" className="hover:opacity-80 transition-opacity">
+    <img src={logo} alt="Logo" className="h-10" />
+  </Link>
+  <nav className="flex space-x-4">
+    <Link 
+      to="/" 
+      className="text-white hover:opacity-80 transition-opacity"
+    >
+      Home
     </Link>
-    <nav>
-      <Link to="/" style={{ margin: '0 1rem', color: '#fff' }}>Home</Link>
-      <Link to="/upload" style={{ margin: '0 1rem', color: '#fff' }}>Upload</Link>
-      <Link to="/how" style={{ margin: '0 1rem', color: '#fff' }}>How It Works</Link>
-      <Link to="/contact" style={{ margin: '0 1rem', color: '#fff' }}>Contact</Link>
-    </nav>
+    <Link
+      to="/upload"
+      className="text-white hover:opacity-80 transition-opacity"
+    >
+      Upload
+    </Link>
+    <Link
+      to="/how"
+      className="text-white hover:opacity-80 transition-opacity"
+    >
+      How It Works
+    </Link>
+    <Link
+      to="/contact"
+      className="text-white hover:opacity-80 transition-opacity"
+    >
+      Contact
+    </Link>
+  </nav>
     <div>
       <SignedOut>
         <SignInButton />

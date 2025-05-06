@@ -76,17 +76,17 @@ export const reviewText = async (text: string): Promise<string> => {
             role: "user",
             parts: [{
               // const analysisPrompt = (text: string) =>
-              text: `🔍 **Resume Analysis Protocol** 🔍
-              **Step 1: Resume Validation**
+              text: `🔍 Resume Analysis Protocol 🔍
+              Step 1: Resume Validation
               ${'❗'.repeat(45)}
               If the input is NOT a professional resume (contains code, random text, or invalid format), respond with:
               "ERROR: 🚫 Please provide a proper resume document (PDF/text format). Detected input type: [DESCRIBE_INPUT_TYPE]"
               
-              **Step 2: Professional Identification**
+              Step 2: Professional Identification
               Analyze resume content to determine primary profession:
               "👤 Professional Identity: [PROFESSION] (Confidence: X%)"
               
-              **Step 3: Section-by-Section Analysis**
+              Step 3: Section-by-Section Analysis
               1️⃣ **Headline Review** 🎯
               ${text.includes('Summary') ? '✅' : '❌'} [HEADLINE_FEEDBACK]
               
@@ -99,7 +99,7 @@ export const reviewText = async (text: string): Promise<string> => {
               4️⃣ **Skills Evaluation** 🛠️
               ${text.match(/Skills|Technical/i) ? '✅' : '❌'} [SKILLS_FEEDBACK]
               
-              **Step 4: Final Assessment** 📊
+              Step 4: Final Assessment 📊
               🏆 **Overall Score**: [SCORE]/100
               🌟 [STRENGTH_1]
               🌟 [STRENGTH_2]
@@ -107,8 +107,9 @@ export const reviewText = async (text: string): Promise<string> => {
               🛑 [WEAKNESS_2]
               💡 Top Improvement: [TOP_IMPROVEMENT]
               
-              **Format Rules**
-              • You shouldn't make content on the bold as it shows like this: ** , which don't look good
+              You are not allowed to use the any bold content that could appear on the j
+              Format Rules:
+              • You shouldn't make content on the bold as it shows like this: ** , which don't look good so don't add these ** on the any content. 
               • Max 7 bullet points
               • 1 line per bullet
               • Use simple emojis

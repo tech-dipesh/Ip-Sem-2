@@ -1,153 +1,97 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Box, Grid, Typography, Link } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { LinkedIn, Instagram, Facebook, Code, Favorite } from '@mui/icons-material';
 import { SiTypescript, SiReact, SiExpress } from 'react-icons/si';
 
-// Stylying the footer dipesh
-const StyledFooter = styled('footer')(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.common.white,
-  padding: theme.spacing(6),
-  position: 'relative',
-  overflow: 'hidden',
-}));
-
-// making a footer animated
-const AnimatedSection = motion(Box);
-
-const footerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-// adding my all of the icons
-const SocialIcon = motion(styled(Link)(({ theme }) => ({
-  color: 'inherit',
-  margin: theme.spacing(0, 1),
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    color: theme.palette.secondary.main,
-  },
-}))
-)
-
 const Footer: React.FC = () => (
-  <StyledFooter>
-    <Grid container spacing={4} justifyContent="space-between">
-      {/* About Section */}
-      <Grid item xs={12} md={4}>
-        <AnimatedSection
-          variants={footerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-            About College Creations
-          </Typography>
-          <Typography variant="body2">
-            A innovative college project dedicated to helping job seekers optimize 
-            their resumes through AI-powered analysis and personalized suggestions.
-          </Typography>
-        </AnimatedSection>
-      </Grid>
+  // Our main footer file
+  <footer className="bg-blue-600 text-white p-12 relative overflow-hidden">
+    <div className="container mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-8">
+        <div className="col-span-12 md:col-span-4">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+            <h6 className="text-lg font-bold mb-4">About Project Creations</h6>
+            <p className="text-sm">
+              Build a tool that can be useful for the students and emplooyees, who want to improve their resume.
+            </p>
+          </motion.div>
+        </div>
 
-      {/* Quick Links */}
-      <Grid item xs={6} md={2}>
-        <AnimatedSection variants={footerVariants} initial="hidden" animate="visible">
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-            Quick Links
-          </Typography>
-          {/* All of the footers list */}
-          <Box component="ul" sx={{ listStyle: 'none', pl: 0 }}>
-            {[
-              { text: 'Home', href: '/' },
-              { text: 'Upload Resume', href: '/upload' },
-              { text: 'Contact Us', href: '/contact' },
-              { text: 'Privacy Policy', href: '/privacy' },
-            ].map((link) => (
-              <li key={link.text}>
-                <Link 
-                  href={link.href} 
-                  color="inherit"
-                  sx={{
-                    textDecoration: 'none',
-                    '&:hover': { color: 'secondary.main' }
-                  }}
-                >
-                  {link.text}
-                </Link>
-              </li>
-            ))}
-          </Box>
-        </AnimatedSection>
-      </Grid>
+        <div className="col-span-6 md:col-span-2">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+            <h6 className="text-lg font-bold mb-4">Quick Links</h6>
+            <ul className="list-none pl-">
+              {[
+                { text: 'Home', href: '/' },
+                { text: 'Upload Resume', href: '/upload' },
+                { text: 'Contact Us', href: '/contact' },
+                { text: 'Privacy Policy', href: '/privacy' },
+              ].map((link) => (
+                <li key={link.text} className="mb-3 text-green-500">
+                  <a href={link.href} className="text-blue-500 no-underline  hover:text-blue-300">
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
 
+{/* Contact us where anyone can contact us */}
+        <div className="col-span-6 md:col-span-3">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+            <h6 className="text-lg font-bold mb-4">Contact Us</h6>
+            <p className="text-sm mb-4">
+              📧 dipeshgautambusiness@gmail.com<br />
+              📱 +91-9745400194 <br />
+              📍 Cu Students
+            </p>
+            <div className="flex gap-4 mt-4">
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-white">
+                <Instagram fontSize="large" />
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-white">
+                <LinkedIn fontSize="large" />
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-white">
+                <Facebook fontSize="large" />
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
 
-      <Grid item xs={6} md={3}>
-        <AnimatedSection variants={footerVariants} initial="hidden" animate="visible">
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-            Contact Us
-          </Typography>
-          <Typography variant="body2" paragraph>
-            📧 dipeshgautambusiness@gmail.com<br />
-            📱 +91-9745400194 <br />
-            📍 Cu Students
-          </Typography>
-          {/* framer aniimation */}
-          <Box sx={{ mt: 2 }}>
-            <SocialIcon whileHover={{ scale: 1.2 }} href="#">
-              <Instagram fontSize="large" />
-            </SocialIcon>
-            <SocialIcon whileHover={{ scale: 1.2 }} href="#">
-              <LinkedIn fontSize="large" />
-            </SocialIcon>
-            <SocialIcon whileHover={{ scale: 1.2 }} href="#">
-              <Facebook fontSize="large" />
-            </SocialIcon>
-          </Box>
-        </AnimatedSection>
-      </Grid>
+{/* All of the tech stack used on the tool */}
+        <div className="col-span-12 md:col-span-3">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+            <h6 className="text-lg font-bold mb-4">Built With</h6>
+            <div className="flex gap-4 items-center">
+              <SiTypescript className="text-2xl" />
+              <SiReact className="text-2xl" />
+              <SiExpress className="text-2xl" />
+              <Code className="text-2xl" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
-{/* all of my tech stacks */}
-      <Grid item xs={12} md={3}>
-        <AnimatedSection variants={footerVariants} initial="hidden" animate="visible">
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
-            Built With
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            <SiTypescript size={24} />
-            <SiReact size={24} />
-            <SiExpress size={24} />
-            <Code fontSize="large" />
-          </Box>
-        </AnimatedSection>
-      </Grid>
-    </Grid>
-
-{/* My legality info */}
-    <Box sx={{ 
-      mt: 4, 
-      pt: 4, 
-      borderTop: '1px solid rgba(255,255,255,0.1)',
-      textAlign: 'center'
-    }}>
-      <Typography variant="body2">
-        © 2025 College Creations. All Rights Reserved.<br />
-        Made with <Favorite sx={{ color: 'error.main', fontSize: 16 }} /> 
-        by Dipesh, Robin, Mohit, Krisy
-      </Typography>
-      <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center', gap: 2 }}>
-        <Link href="/privacy" color="inherit" variant="body2">
-          Privacy Policy
-        </Link>
-        <Link href="/terms" color="inherit" variant="body2">
-          Terms of Use
-        </Link>
-      </Box>
-    </Box>
-  </StyledFooter>
+{/* Footer bottom side */}
+      <div className="pt-4 mt-8 border-t border-white/10 text-center">
+        <p className="text-sm">
+          © 2025 College Creations. All Rights Reserved.<br />
+          Made with <Favorite className="text-red-500 text-base" /> 
+          by Dipesh, Robin, Mohit, Krisy
+        </p>
+        <div className="flex justify-center gap-4 mt-2">
+          <a href="/privacy" className="text-white text-sm hover:text-blue-300">
+            Privacy Policy
+          </a>
+          <a href="/terms" className="text-white text-sm hover:text-blue-300">
+            Terms of Use
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 );
 
 export default Footer;

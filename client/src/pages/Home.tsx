@@ -92,11 +92,11 @@ const Home: React.FC = () => {
               {
                 icon: <RocketLaunch />,
                 title: "Instant Analysis",
-                count: 17,
+                count: 10,
               },
-              { icon: <CloudUpload />, title: "Resume Uploads", count: 45 },
-              { icon: <Analytics />, title: "Career Insights", count: 27 },
-              { icon: <ContactSupport />, title: "24/7 Support", count: 37 },
+              { icon: <CloudUpload />, title: "Resume Uploads", count: 8 },
+              { icon: <Analytics />, title: "Loved By", count: 12 },
+              { icon: <ContactSupport />, title: "24/7 Support", count: 4 },
             ].map((item, index) => (
               <Grid item xs={12} sm={6} md={3} key={item.title}>
                 <motion.div
@@ -128,7 +128,8 @@ const Home: React.FC = () => {
             <GradientButton
               onClick={() => navigate("/upload")}
               startIcon={<CloudUpload />}
-              size="large"
+              size="large" 
+              // className="margin-top:20px"
             >
               Analyze Your Resume Now
             </GradientButton>
