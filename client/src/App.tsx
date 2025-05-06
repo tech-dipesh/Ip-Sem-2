@@ -20,6 +20,7 @@ const App: React.FC = () => {
             path="/upload"
             element={
               <>
+              {/* Authentication for the clerk */}
                 <SignedIn>
                   <Upload />
                 </SignedIn>
