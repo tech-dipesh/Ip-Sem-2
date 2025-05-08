@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const API = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://ip-sem-2.onrender.com',
   timeout: 30000,
   // higher timer would be beter for me j
 });
