@@ -6,12 +6,12 @@ import {
   RocketLaunch,
   AutoAwesome,
   Psychology,
-  School,} from "@mui/icons-material";
+  School,
+} from "@mui/icons-material";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 const SectionWrapper = styled(Box)(({ theme }) => ({
-  // raw css not need this
   minHeight: "100vh",
   padding: theme.spacing(8),
   [theme.breakpoints.down("md")]: {
@@ -19,28 +19,26 @@ const SectionWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-// const AnimatedText = motion(Typography);
-// Add on the array all of the problem statement
 const storyContent = [
   {
     icon: <RocketLaunch fontSize="large" />,
     title: "The Idea",
-    text: "The idea came from a simple question—can we build a helpful tool that reviews resumes using external resources? I wanted to explore whether it's possible to create something useful and specific that fills a gap many job seekers face when trying to improve their resumes.",
+    text: "The idea came from a simple question...",
   },
   {
     icon: <School fontSize="large" />,
     title: "Market",
-    text: "I reviewed many resume feedback platforms, and most of them looked polished in terms of speed and overall performance. But when I tried using their features, many required payment even for the most basic functions. This common paywall approach makes it difficult for users to get value upfront and can be quite discouraging.",
+    text: "I reviewed many resume feedback platforms...",
   },
   {
     icon: <Psychology fontSize="large" />,
     title: "The Build",
-    text: "As a developer, I started by building a basic prototype. In the beginning, I faced some challenges, especially while planning the overall structure. But over time, I managed to set up all the backend routes. I chose to use TypeScript instead of JavaScript, which I’m currently focusing on to write more reliable and maintainable code.",
+    text: "As a developer, I started by building...",
   },
   {
     icon: <AutoAwesome fontSize="large" />,
     title: "The Solution",
-    text: "As of now, we haven't encountered any API issues, so the website is running smoothly. It's designed to help users improve their resume style by suggesting cleaner layouts and better structure. Additionally, it provides honest, balanced feedback—highlighting both the strong points and areas that need improvement.",
+    text: "As of now, we haven't encountered any API issues...",
   },
 ];
 
@@ -49,7 +47,6 @@ const HowItWorks = () => {
   const { scrollYProgress } = useScroll({ target: ref });
   const theme = useTheme();
 
-  // This is animation which i add from the framer-motion.
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.2]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
 
@@ -61,12 +58,7 @@ const HowItWorks = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Typography
-            variant="h2"
-            component="h1"
-            gutterBottom
-            sx={{ fontWeight: 900 }}
-          >
+          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 900 }}>
             Our Story
           </Typography>
           <Typography variant="h5" color="textSecondary">
@@ -75,10 +67,11 @@ const HowItWorks = () => {
         </motion.div>
       </Box>
 
-      {/* timeline in the form of the aniimation */}
+      {/* Fixed Grid implementation */}
       <Grid container spacing={6}>
         {storyContent.map((item, index) => (
-          <Grid item xs={12} md={6} key={item.title}>
+          // <Grid item xs={12} sm={6} key={item.title}>
+          <Grid size={6}  key={item.title}>
             <motion.div
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -100,11 +93,7 @@ const HowItWorks = () => {
                   <TimelineDot color="primary" sx={{ mr: 2 }}>
                     {item.icon}
                   </TimelineDot>
-                  <Typography
-                    variant="h5"
-                    component="h3"
-                    sx={{ fontWeight: 700 }}
-                  >
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 700 }}>
                     {item.title}
                   </Typography>
                 </Box>
@@ -117,7 +106,6 @@ const HowItWorks = () => {
         ))}
       </Grid>
 
-      {/* mission components, which specifically use a framer-motion, i can remove later. */}
       <Box sx={{ mt: 12, textAlign: "center" }}>
         <motion.div
           style={{ scale, opacity }}
@@ -125,12 +113,7 @@ const HowItWorks = () => {
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
         >
-          <Typography
-            variant="h3"
-            component="h2"
-            gutterBottom
-            sx={{ fontWeight: 900 }}
-          >
+          <Typography variant="h3" component="h2" gutterBottom sx={{ fontWeight: 900 }}>
             Our Objective:
           </Typography>
           <Typography
@@ -138,10 +121,7 @@ const HowItWorks = () => {
             color="textSecondary"
             sx={{ maxWidth: 800, margin: "auto" }}
           >
-            "While this app isn’t fully production-ready, it performs close to
-            that level. I’ve built it using everything I’ve learned up to April
-            2025. Through this project, I'm showcasing my current skills and
-            applying them to real-world use cases."
+            "While this app isn't fully production-ready..."
           </Typography>
           <Button
             component={Link}
@@ -155,27 +135,24 @@ const HowItWorks = () => {
         </motion.div>
       </Box>
 
-      {/* all stats with the animation */}
+      {/* Fixed Stats Grid */}
       <Grid container spacing={4} sx={{ mt: 8 }}>
         {[
           { number: "Better", label: "Resumes Improved" },
           { number: "Higher", label: "Satisfaction Rate" },
           { number: "24/7", label: "Free Access" },
           { number: "AI", label: "Powered Analysis" },
-        ].map((stat, index) => (
-          <Grid item xs={6} md={3} key={stat.label}>
+        ].map((stat) => (
+          // <Grid item xs={6} md={3} key={stat.label}>
+          <Grid size={6} key={stat.label}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ duration: 0.3 }}
               viewport={{ once: true }}
             >
               <Box sx={{ textAlign: "center", p: 3 }}>
-                <Typography
-                  variant="h3"
-                  component="div"
-                  sx={{ fontWeight: 900, mb: 1 }}
-                >
+                <Typography variant="h3" component="div" sx={{ fontWeight: 900, mb: 1 }}>
                   {stat.number}
                 </Typography>
                 <Typography variant="body1" color="textSecondary">

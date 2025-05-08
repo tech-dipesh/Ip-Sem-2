@@ -1,6 +1,6 @@
 import express from 'express';
 import { UploadedFile } from 'express-fileupload';
-import { parsePDF } from '../services/pdf-parse';
+import { parsePDF } from '../services/pdf-parse(no)';
 import { reviewText } from '../services/ai';
 // server/src/controllers/upload.ts
 export const handleUpload = async (req: express.Request, res: express.Response): Promise<void> => {

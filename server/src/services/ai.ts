@@ -76,6 +76,7 @@ export const reviewText = async (text: string): Promise<string> => {
             role: "user",
             parts: [{
               // const analysisPrompt = (text: string) =>
+              // This is the custom prompts that we command to ai, 
               text: `🔍 Resume Analysis Protocol 🔍
               Step 1: Resume Validation
               ${'❗'.repeat(45)}

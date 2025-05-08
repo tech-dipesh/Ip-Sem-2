@@ -10,6 +10,7 @@ import {
   GlobalStyles,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+// import { textAlign } from "@mui/system";
 
 // All framer animation on my contact us page
 const GradientButton = styled(Button)(({}) => ({
@@ -27,7 +28,8 @@ const GradientButton = styled(Button)(({}) => ({
   },
 }));
 
-const AnimatedTextField = motion(TextField);
+// const AnimatedTextField = motion(TextField);
+const AnimatedTextField=motion.create(TextField)
 
 export default function Contact() {
   // Default value of the contact us form

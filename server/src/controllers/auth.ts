@@ -1,7 +1,7 @@
 import express from 'express';
 import { requireAuth } from '@clerk/express';
 
-//types mine
+//types of clerk
 type ClerkRequest = express.Request & {
   auth: {
     userId: string;
@@ -13,7 +13,7 @@ type ClerkRequest = express.Request & {
   }
 };
 
-//expoerting a middleware and handler separeately
+// clerkk authentication and authorization,
 export const authMiddleware = requireAuth();
 export const getProfileHandler = (req: express.Request, res: express.Response): void => {
   const clerkReq = req as ClerkRequest;
@@ -23,6 +23,7 @@ export const getProfileHandler = (req: express.Request, res: express.Response): 
     return;
   }
   
+  // details that we collect from clerk and store on clerk
   res.json({
     userId: clerkReq.auth.userId,
     email: clerkReq.auth.sessionClaims.email,

@@ -52,7 +52,8 @@ app.use((0, cors_1.default)({
     origin: 'http://localhost:5173',
     credentials: true
 }));
-app.use(express_1.default.json({ limit: '3mb' })); // Increased JSON size limit for text analysis
+app.use(express_1.default.json({ limit: '3mb' }));
+// Increased JSON size limit for text analysis
 app.use((0, express_2.clerkMiddleware)());
 app.use((0, express_fileupload_1.default)({
     limits: { fileSize: 3 * 1024 * 1024 },
