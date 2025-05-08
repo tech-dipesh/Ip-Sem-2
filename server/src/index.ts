@@ -55,7 +55,8 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json({ limit: '3mb' })); // Increased JSON size limit for text analysis
+app.use(express.json({ limit: '3mb' }));
+ // Increased JSON size limit for text analysis
 app.use(clerkMiddleware());
 
 app.use(fileUpload({

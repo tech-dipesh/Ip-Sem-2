@@ -4,7 +4,7 @@ import { requireAuth } from '@clerk/express';
 
 const router = Router();
 
-//i'm using function directly
+//for teh authentication route
 router.get('/me', authMiddleware, getProfileHandler);
 
 router.post('/logout', requireAuth(), (_req, res) => {

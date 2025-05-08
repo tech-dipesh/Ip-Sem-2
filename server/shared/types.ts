@@ -1,3 +1,4 @@
+// All of the typescript types add here
 declare module 'express' {
   interface Request {
     auth?: {

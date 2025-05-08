@@ -12,10 +12,11 @@ const ResumeTextInput: React.FC<ResumeTextInputProps> = ({ onSubmit, isProcessin
   const [resumeText, setResumeText] = useState('');
   const [error, setError] = useState('');
 
+  // e parameter 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // You should have at least 50 chars length .
+    // making a input text for more than a 50 length character.
     if (resumeText.trim().length < 50) {
       setError('Please enter a more detailed resume text (minimum 50 characters).');
       return;

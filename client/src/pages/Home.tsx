@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button, Typography, Box, styled } from "@mui/material";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 import {
   RocketLaunch,
   CloudUpload,
@@ -63,8 +63,8 @@ const Home: React.FC = () => {
         }}
       />
 
-           <Grid container spacing={6} justifyContent="center">
-            {/* Not necessery content but i can change this content later. */}
+      <Grid container spacing={6} justifyContent="center">
+        {/* Not necessery content but i can change this content later. */}
         <Grid item xs={12} md={8}>
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -72,7 +72,6 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <Typography variant="h2" gutterBottom sx={{ fontWeight: 700 }}>
-
               Transform Your Career with
               <motion.span
                 style={{ color: "#00C9FF", marginLeft: "1rem" }}
@@ -85,7 +84,7 @@ const Home: React.FC = () => {
           </motion.div>
         </Grid>
 
-{/* this is the feature text */}
+        {/* this is the feature text */}
         <Grid item xs={12}>
           <Grid container spacing={4} justifyContent="center">
             {[
@@ -118,8 +117,8 @@ const Home: React.FC = () => {
             ))}
           </Grid>
         </Grid>
-
-        <Grid xs={12} sx={{ textAlign: "center", mt: 8 }}>
+{/* Grid is showwing error due to new material ui update */}
+        <Grid  xs={12} sx={{ textAlign: "center", mt: 8 }}>
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -128,7 +127,7 @@ const Home: React.FC = () => {
             <GradientButton
               onClick={() => navigate("/upload")}
               startIcon={<CloudUpload />}
-              size="large" 
+              size="large"
               // className="margin-top:20px"
             >
               Analyze Your Resume Now
@@ -136,29 +135,7 @@ const Home: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} md={6} sx={{ mt: 8 }}>
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <FloatingCard whileHover={{ rotate: 1 }}>
-              <Typography variant="h4" gutterBottom>
-                Need Personal Assistance?
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                Our experts are ready to help you polish your resume
-              </Typography>
-              <GradientButton
-                onClick={() => navigate("/login")}
-                variant="contained"
-                color="primary"
-              >
-                Contact Our Experts
-              </GradientButton>
-            </FloatingCard>
-          </motion.div>
-        </Grid>
+ 
       </Grid>
     </HeroSection>
   );
