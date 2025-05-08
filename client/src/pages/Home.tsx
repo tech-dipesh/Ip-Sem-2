@@ -65,8 +65,11 @@ const Home: React.FC = () => {
 
       <Grid container spacing={6} justifyContent="center">
         {/* Not necessery content but i can change this content later. */}
-        <Grid size={6}>
-        
+        <Grid size={{xs: 12, md: 8 }}>
+        {/* <Grid size={{ xs: 12, sx: {{textAlign: "center", mt:  }}  > */}
+
+        {/* <Grid item xs={12} md={8}> */}
+
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -86,7 +89,7 @@ const Home: React.FC = () => {
         </Grid>
 
         {/* this is the feature text */}
-        <Grid size={6}>
+        <Grid size={{xs: 6}}>
           <Grid container spacing={4} justifyContent="center">
             {[
               {
@@ -98,7 +101,10 @@ const Home: React.FC = () => {
               { icon: <Analytics />, title: "Loved By", count: 12 },
               { icon: <ContactSupport />, title: "24/7 Support", count: 4 },
             ].map((item, index) => (
-              <Grid size={6} key={item.title}>
+              // <Grid size={6} key={item.title}>
+              <Grid size={{ xs:12, sm:6, md:3}} key={item.title}>
+        {/* <Grid size={{xs: 12, md: 8 }}> */}
+
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -119,8 +125,8 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
 {/* Grid is showwing error due to new material ui update */}
-        {/* <Grid  xs={12} sx={{ textAlign: "center", mt: 8 }}> */}
-        <Grid  size={6}>
+        <Grid size={{xs: 12, xs=12,  sx=textAlign: "center", mt: 8 }}>
+        {/* <Grid  size={6}> */}
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}

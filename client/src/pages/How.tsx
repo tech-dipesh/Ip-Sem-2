@@ -143,8 +143,8 @@ const HowItWorks = () => {
           { number: "24/7", label: "Free Access" },
           { number: "AI", label: "Powered Analysis" },
         ].map((stat) => (
-          // <Grid item xs={6} md={3} key={stat.label}>
-          <Grid size={6} key={stat.label}>
+          <Grid item xs={6} md={3} key={stat.label}>
+          {/* // <Grid item xs={6} md={3} key={stat.label}> */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
