@@ -102,7 +102,7 @@ const Home: React.FC = () => {
               { icon: <ContactSupport />, title: "24/7 Support", count: 4 },
             ].map((item, index) => (
               // <Grid size={6} key={item.title}>
-              <Grid size={{ xs:12, sm:6, md:3}} key={item.title}>
+              <Grid size={{ xs:12, sm:6, md:8}} key={item.title}>
         {/* <Grid size={{xs: 12, md: 8 }}> */}
 
                 <motion.div
@@ -125,7 +125,8 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
 {/* Grid is showwing error due to new material ui update */}
-        <Grid size={{xs: 12, xs=12,  sx=textAlign: "center", mt: 8 }}>
+        {/* <Grid size={{xs: 12, xs=12,  sx=textAlign: "center", mt: 8 }}> */}
+        <Grid size={{ xs: 20 }} sx={{ textAlign: "center", mt: 20 }}>
         {/* <Grid  size={6}> */}
           <motion.div
             initial={{ scale: 0.9 }}
