@@ -143,8 +143,6 @@ const Home: React.FC = () => {
             </GradientButton>
           </motion.div>
         </Grid>
-
- 
       </Grid>
     </HeroSection>
   );
