@@ -56,13 +56,12 @@ import fetch from 'node-fetch';
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-//  const apiKey = process.env.GEMINI_API_KEY;
-const apiKey = "AIzaSyDW2egOT7NHy7STB06iDFegX9IAnFulujs";
+ const valueFromEnv = process.env.GEMINI_API_KEY;
+const apiKey = valueFromEnv || "AIzaSyDW2egOT7NHy7STB06iDFegX9IAnFulujs";
 
 export const reviewText = async (text: string): Promise<string> => {
   try {
     if (!apiKey) throw new Error('Missing Gemini API key');
-
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent`,
       {
@@ -101,7 +100,7 @@ export const reviewText = async (text: string): Promise<string> => {
               ${text.match(/Skills|Technical/i) ? '✅' : '❌'} [SKILLS_FEEDBACK]
               
               Step 4: Final Assessment 📊
-              🏆 **Overall Score**: [SCORE]/100
+              🏆 Overall Score: [SCORE]/100
               🌟 [STRENGTH_1]
               🌟 [STRENGTH_2]
               🛑 [WEAKNESS_1]
